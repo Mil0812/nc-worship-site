@@ -18,7 +18,6 @@ return new class extends Migration
         });
 
         Schema::table('comments', function (Blueprint $table) {
-            // Додаємо зовнішній ключ після створення таблиці
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('comments')

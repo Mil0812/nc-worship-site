@@ -15,9 +15,9 @@ class SetListSong extends Pivot
 {
     use HasFactory, HasUlids;
 
-    protected $table = 'set_list_songs';
+    protected $table = 'set_list_song';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected function casts(): array
     {
@@ -33,7 +33,7 @@ class SetListSong extends Pivot
 
     public function song(): BelongsTo
     {
-        return $this->belongsTo(Song::class);
+        return $this->belongsTo(Song::class, 'song_id');
     }
 
     public function leader(): BelongsTo
@@ -43,6 +43,6 @@ class SetListSong extends Pivot
 
     public function pad(): BelongsTo
     {
-        return $this->belongsTo(Pad::class);
+        return $this->belongsTo(Pad::class, 'pad_id');
     }
 }

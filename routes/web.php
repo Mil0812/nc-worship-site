@@ -1,39 +1,56 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Livewire\Counter;
-use Illuminate\Http\Request;
+use App\Livewire\Dashboard\Dashboard;
+use App\Livewire\Dashboard\UserNotifications;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/counter', Counter::class)->name('counter');
+Route::get('/', App\Livewire\Home::class)->name('home');
 
-Route::get('/token', function (Request $request) {
-    $token = $request->session()->token();
-
-    $token = csrf_token();
-
-    // ...
+Route::prefix('bands')->group(function () {
+    Route::get('/', App\Livewire\Bands\Index::class)->name('bands.index');
+    Route::get('/{id}', App\Livewire\Bands\Show::class)->name('bands.show');
 });
 
-Route::apiResource('users', UserController::class);
+Route::prefix('songs')->group(function () {
+    Route::get('/', App\Livewire\Songs\Index::class)->name('songs.index');
+    Route::get('/{slug}', App\Livewire\Songs\Show::class)->name('songs.show');
+});
+//
+Route::prefix('tutorials')->group(function () {
+    Route::get('/', App\Livewire\Tutorials\Index::class)->name('tutorials.index');
+    Route::get('/{slug}', App\Livewire\Tutorials\Show::class)->name('tutorials.show');
+});
 
-Route::get('/user/{id}', [UserController::class, 'show']);
+    Route::middleware('auth')->group(function () {
+        Route::prefix('setlists')->group(function () {
+            Route::get('/', App\Livewire\SetLists\Index::class)->name('setlists.index');
+            Route::get('/{setList:id}', App\Livewire\SetLists\Show::class)->name('setlists.show');
+        });
+    });
 
-Route::view('dashboard', 'dashboard')
+Route::get('/notifications', UserNotifications::class)
+    ->middleware('auth')
+    ->name('notifications');
+
+Route::get('dashboard', Dashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+    Route::get('settings/password', App\Livewire\Dashboard\PasswordUpdate::class)->name('settings.password');
+    Route::get('favourites', App\Livewire\Dashboard\Favorites::class)->name('favourites');
 });
 
 require __DIR__.'/auth.php';

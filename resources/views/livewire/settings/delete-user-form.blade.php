@@ -22,6 +22,7 @@ new class extends Component {
     }
 }; ?>
 
+
 <section class="mt-10 space-y-6">
     <div class="relative mb-5">
         <flux:heading>{{ __('Delete account') }}</flux:heading>
@@ -44,7 +45,7 @@ new class extends Component {
                 </flux:subheading>
             </div>
 
-            <flux:input wire:model="password" :label="__('Password')" type="password" />
+            <flux:input wire:model="password" :label="__('Password')" type="password"/>
 
             <div class="flex justify-end space-x-2">
                 <flux:modal.close>

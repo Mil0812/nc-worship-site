@@ -12,7 +12,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->foreignUlid('band_id')->constrained()->cascadeOnDelete();
-            $table->date('performed_at')->nullable(); // Додаємо дату проведення
+            $table->date('performed_at')->nullable();
             $table->timestamps();
         });
     }

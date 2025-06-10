@@ -13,7 +13,8 @@ return new class extends Migration
         Schema::create('pads', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->enum('key', Arr::map(OriginalKey::cases(), fn (OriginalKey $originalKey) => $originalKey->value))->nullable();
+            $table->enum('key', Arr::map(OriginalKey::cases(),
+                fn (OriginalKey $originalKey) => $originalKey->value));
             $table->string('audio', 2048);
         });
     }

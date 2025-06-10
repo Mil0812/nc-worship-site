@@ -18,6 +18,7 @@ namespace App\Models{
  * @property string $id
  * @property string $name
  * @property string|null $image
+ * @property-read string $image_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SetList> $setLists
  * @property-read int|null $set_lists_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
@@ -29,7 +30,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Band whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Band whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Band whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Band withLeaders()
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
@@ -83,19 +83,19 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Song $song
  * @property-read \App\Models\User $user
- * @method static \Database\Factories\FavoriteFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereSongId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereUserId($value)
+ * @method static \Database\Factories\FavouriteFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite whereSongId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Favourite whereUserId($value)
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
-	class IdeHelperFavorite {}
+	class IdeHelperFavourite {}
 }
 
 namespace App\Models{
@@ -105,6 +105,7 @@ namespace App\Models{
  * @property string $id
  * @property string $name
  * @property string|null $icon
+ * @property-read string $icon_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tutorial> $tutorials
  * @property-read int|null $tutorials_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
@@ -128,8 +129,9 @@ namespace App\Models{
  *
  * @property string $id
  * @property string $name
- * @property \App\Enums\OriginalKey|null $key
+ * @property \App\Enums\OriginalKey $key
  * @property string $audio
+ * @property-read string|null $audio_url
  * @property-read \App\Models\SetListSong|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SetList> $setListSongs
  * @property-read int|null $set_list_songs_count
@@ -185,10 +187,12 @@ namespace App\Models{
  * @property string $id
  * @property string $set_list_id
  * @property string $song_id
- * @property int|null $number
+ * @property int $number
  * @property string|null $leader_id
- * @property \App\Enums\OriginalKey|null $key
+ * @property \App\Enums\OriginalKey $key
  * @property string $pad_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $leader
  * @property-read \App\Models\Pad $pad
  * @property-read \App\Models\SetList $setList
@@ -197,6 +201,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereLeaderId($value)
@@ -204,6 +209,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong wherePadId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereSetListId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereSongId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SetListSong whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
@@ -215,13 +221,15 @@ namespace App\Models{
  * 
  *
  * @property string $id
- * @property string $slug
  * @property string $name
+ * @property string $slug
+ * @property string|null $author
+ * @property \App\Enums\SongType $type
  * @property string|null $image
- * @property \App\Enums\OriginalKey|null $original_key
- * @property int|null $bpm
+ * @property \App\Enums\OriginalKey $original_key
+ * @property int $bpm
  * @property \App\Enums\TimeSignature|null $time_signature
- * @property string|null $text
+ * @property string|null $audio
  * @property string|null $meta_title
  * @property string|null $meta_description
  * @property string|null $meta_image
@@ -229,11 +237,15 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
  * @property-read int|null $comments_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Favorite> $favorites
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Favourite> $favorites
  * @property-read int|null $favorites_count
+ * @property-read string $audio_url
+ * @property-read string $image_url
  * @property-read \App\Models\SetListSong|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SetList> $setLists
  * @property-read int|null $set_lists_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SongSection> $songSections
+ * @property-read int|null $song_sections_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tutorial> $tutorials
  * @property-read int|null $tutorials_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song byBpmRange(int $min, int $max)
@@ -243,6 +255,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereAudio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereAuthor($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereBpm($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereId($value)
@@ -253,13 +267,44 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereOriginalKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereTimeSignature($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Song whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]
 	class IdeHelperSong {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property string $id
+ * @property \App\Enums\SongSectionType $section_type
+ * @property int $order
+ * @property string $lyrics
+ * @property string|null $chords
+ * @property string $song_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Song $song
+ * @method static \Database\Factories\SongSectionFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereChords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereLyrics($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereSectionType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereSongId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SongSection whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperSongSection {}
 }
 
 namespace App\Models{
@@ -327,7 +372,7 @@ namespace App\Models{
  * @property-read int|null $bands_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
  * @property-read int|null $comments_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Favorite> $favorites
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Favourite> $favorites
  * @property-read int|null $favorites_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Instrument> $instruments
  * @property-read int|null $instruments_count

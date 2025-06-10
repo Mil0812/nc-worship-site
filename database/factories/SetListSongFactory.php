@@ -17,11 +17,13 @@ class SetListSongFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'set_list_id' => SetList::query()->inRandomOrder()->first()->id ?? SetList::factory(),
             'set_list_id' => SetList::factory(),
-            // 'song_id' => Song::query()->inRandomOrder()->first()->id ?? Song::factory(),
             'song_id' => Song::factory(),
-            'number' => fake()->numberBetween(1, 10),
+            'number' => function (array $attributes) {
+                $setListId = $attributes['set_list_id'] ?? SetList::factory()->create()->id;
+                $maxNumber = SetListSong::where('set_list_id', $setListId)->max('number') ?? 0;
+                return $maxNumber + 1;
+            },
             'leader_id' => User::query()->inRandomOrder()->first()->id ?? User::factory(),
             'key' => fake()->randomElement(OriginalKey::cases()),
             'pad_id' => Pad::query()->inRandomOrder()->first()->id ?? Pad::factory(),

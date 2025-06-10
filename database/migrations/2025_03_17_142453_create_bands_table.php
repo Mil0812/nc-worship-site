@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('bands', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->char('name', length: 30);
-            $table->string('image')->nullable();
+            $table->char('name', length: 30)->unique();
+            $table->string('image', 2048)->nullable();
         });
     }
 

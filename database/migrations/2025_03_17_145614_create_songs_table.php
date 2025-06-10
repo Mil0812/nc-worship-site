@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\OriginalKey;
+use App\Enums\SongType;
 use App\Enums\TimeSignature;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,15 +14,17 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->char('name', length: 100)
+                ->unique();
             $table->string('slug', 128)->unique();
-            $table->char('name', length: 100);
+            $table->string('author', 128)->nullable();
+            $table->enum('type', Arr::map(SongType::cases(), fn (SongType $songType) => $songType->value));
             $table->string('image')->nullable();
-            $table->enum('original_key', Arr::map(OriginalKey::cases(), fn (OriginalKey $originalKey) => $originalKey->value))
-                ->nullable();
-            $table->integer('bpm')->nullable();
+            $table->enum('original_key', Arr::map(OriginalKey::cases(), fn (OriginalKey $originalKey) => $originalKey->value));
+            $table->integer('bpm');
             $table->enum('time_signature', Arr::map(TimeSignature::cases(), fn (TimeSignature $timeSignature) => $timeSignature->value))
                 ->nullable();
-            $table->text('text')->nullable();
+            $table->string('audio', 2048)->nullable();
             $table->string('meta_title', 128)->nullable();
             $table->string('meta_description', 376)->nullable();
             $table->string('meta_image', 2048)->nullable();

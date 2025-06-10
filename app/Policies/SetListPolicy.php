@@ -25,7 +25,6 @@ class SetListPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Учасники гурту можуть переглядати списки сет-листів
         return $user->isGroupMember();
     }
 
@@ -34,7 +33,6 @@ class SetListPolicy
      */
     public function view(User $user, SetList $setList): bool
     {
-        // Перевірка, чи є користувач учасником гурту, до якого належить сет-лист
         return $user->bands()->where('band_id', $setList->band_id)->exists();
     }
 
@@ -43,8 +41,7 @@ class SetListPolicy
      */
     public function create(User $user): bool
     {
-        // Тільки лідери гурту можуть створювати сет-листи
-        return $user->bands()->wherePivot('is_leader', true)->exists();
+        return false;
     }
 
     /**
@@ -52,11 +49,7 @@ class SetListPolicy
      */
     public function update(User $user, SetList $setList): bool
     {
-        // Тільки лідери гурту можуть редагувати сет-листи
-        return $user->bands()
-            ->where('band_id', $setList->band_id)
-            ->wherePivot('is_leader', true)
-            ->exists();
+        return false;
     }
 
     /**
@@ -64,10 +57,7 @@ class SetListPolicy
      */
     public function delete(User $user, SetList $setList): bool
     {
-        // Тільки лідери гурту можуть видаляти сет-листи
-        return $user->bands()
-            ->where('band_id', $setList->band_id)
-            ->wherePivot('is_leader', true)
-            ->exists();
+
+        return false;
     }
 }

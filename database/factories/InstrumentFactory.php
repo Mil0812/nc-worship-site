@@ -12,8 +12,8 @@ class InstrumentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement(['Гітара', 'Бас', 'Ударні', 'Вокал', 'Клавішні']),
-            'icon' => fake()->optional()->imageUrl(100, 100, 'instruments'),
+            'name' => fake()->unique()->randomElement(['Акустична гітара', 'Бас', 'Барабани', 'Піаніно', 'Саксофон', 'Електрогітара']),
+            'icon' => fake()->imageUrl(100, 100, 'instruments'),
         ];
     }
 }

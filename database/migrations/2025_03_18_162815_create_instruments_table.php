@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('instruments', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->char('name', length: 30);
+            $table->char('name', length: 30)->unique();
             $table->string('icon')->nullable();
         });
     }

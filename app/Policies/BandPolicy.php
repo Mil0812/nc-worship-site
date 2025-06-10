@@ -47,7 +47,7 @@ class BandPolicy
      */
     public function update(User $user, Band $band): bool
     {
-        return $user->bands()->where('band_id', $band->id)->wherePivot('is_leader', true)->exists();
+        return false;
     }
 
     /**
@@ -55,6 +55,6 @@ class BandPolicy
      */
     public function delete(User $user, Band $band): bool
     {
-        return $user->bands()->where('band_id', $band->id)->wherePivot('is_leader', true)->exists();
+        return false;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
@@ -19,7 +20,7 @@ enum OriginalKey: string implements HasColor, HasIcon, HasLabel
     case GSharp = 'G#';
     case A = 'A';
     case ASharp = 'A#';
-    case B = 'B';
+    case H = 'H';
 
     public function getLabel(): ?string
     {
@@ -36,21 +37,24 @@ enum OriginalKey: string implements HasColor, HasIcon, HasLabel
     public function getColor(): string|array|null
     {
         return match ($this) {
-            self::C, self::E, self::A => 'primary',
-            self::CSharp, self::F, self::ASharp => 'success',
-            self::D, self::FSharp, self::B => 'warning',
-            self::DSharp, self::G, self::GSharp => 'danger',
-            default => 'gray',
+            self::C => Color::hex('#3a6a94'),
+            self::CSharp => Color::hex('#426f9e'),
+            self::D => Color::hex('#4b87b6'),
+            self::DSharp => Color::hex('#4c94cc'),
+            self::E => Color::hex('#4ca4df'),
+            self::F => Color::hex('#47b3ea'),
+            self::FSharp => Color::hex('#37c6f6'),
+            self::G => Color::hex('#35d0f7'),
+            self::GSharp => Color::hex('#32e1f4'),
+            self::A => Color::hex('#25ebfa'),
+            self::ASharp => Color::hex('#00ffff'),
+            self::H => Color::hex('#99ffff'),
+            default => Color::hex('gray'),
         };
     }
 
     public function getIcon(): ?string
     {
-        return match ($this) {
-            self::C, self::CSharp, self::D, self::DSharp => 'heroicon-o-musical-note',
-            self::E, self::F, self::FSharp, self::G => 'heroicon-s-musical-note',
-            self::GSharp, self::A, self::ASharp, self::B => 'heroicon-m-musical-note',
-            default => null,
-        };
+        return 'heroicon-s-musical-note';
     }
 }

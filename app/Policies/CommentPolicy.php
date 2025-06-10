@@ -2,18 +2,23 @@
 
 namespace App\Policies;
 
+use App\Enums\Role;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class CommentPolicy
 {
+    public function before(User $user, string $ability): ?bool
+    {
+        return $user->role === Role::ADMIN ? true : null;
+    }
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +26,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +34,7 @@ class CommentPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +42,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): bool
     {
-        return false;
+        return $user->id === $comment->user_id;
     }
 
     /**
@@ -45,22 +50,6 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Comment $comment): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Comment $comment): bool
-    {
-        return false;
+        return $user->id === $comment->user_id;
     }
 }

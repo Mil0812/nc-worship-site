@@ -9,7 +9,8 @@ trait HasSeo
 {
     public static function generateSlug(string $title): string
     {
-        return str($title)->slug().'-'.str(str()->random(6))->lower();
+//        return str($title)->slug().'-'.str(str()->random(6))->lower();
+        return str($title)->slug();
     }
 
     public function getRouteKeyName(): string
@@ -19,7 +20,12 @@ trait HasSeo
 
     public static function makeMetaTitle(string $title): string
     {
-        return $title.' | '.config('app.name');
+        $suffix = ' | NcWorshipSongs';
+        $maxTitleLength = 128 - strlen($suffix);
+        $truncatedTitle = Str::limit($title, $maxTitleLength, '');
+        return $truncatedTitle . $suffix;
+
+        //return $title.' | '.config('app.name');
     }
 
     public static function makeMetaDescription(string $description): string

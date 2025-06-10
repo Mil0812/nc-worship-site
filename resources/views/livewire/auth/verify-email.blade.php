@@ -34,24 +34,29 @@ new #[Layout('components.layouts.auth')] class extends Component {
     }
 }; ?>
 
-<div class="mt-4 flex flex-col gap-6">
-    <flux:text class="text-center">
-        {{ __('Please verify your email address by clicking on the link we just emailed to you.') }}
+<div
+    class="flex flex-col gap-[var(--spacing-lg)] max-w-md mx-auto p-[var(--spacing-md)] bg-[var(--color-background-alt)] rounded-[var(--radius-md)] shadow-md">
+    <flux:text class="text-center text-[var(--font-size-md)]">
+        {{ __('messages.verify_email_message') }}
     </flux:text>
 
     @if (session('status') == 'verification-link-sent')
-        <flux:text class="text-center font-medium !dark:text-green-400 !text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+        <flux:text
+            class="text-center text-[var(--color-success)] font-[var(--font-weight-medium)]">
+            {{ __('messages.new_verification_link_sent') }}
         </flux:text>
     @endif
 
-    <div class="flex flex-col items-center justify-between space-y-3">
-        <flux:button wire:click="sendVerification" variant="primary" class="w-full">
-            {{ __('Resend verification email') }}
+    <div class="flex flex-col items-center gap-[var(--spacing-md)]">
+        <flux:button wire:click="sendVerification" variant="primary"
+                     class="w-full bg-[var(--color-primary)] text-[var(--color-text-light)] hover:bg-[var(--color-primary-dark)] transition-[var(--transition-normal)] rounded-[var(--radius-md)] py-[var(--spacing-sm)]">
+            {{ __('messages.resend_verification_email') }}
         </flux:button>
 
-        <flux:link class="text-sm cursor-pointer" wire:click="logout">
-            {{ __('Log out') }}
+        <flux:link
+            class="text-[var(--font-size-sm)] dark:text-[var(--color-text-light)] hover:text-[var(--color-primary)] transition-[var(--transition-normal)] cursor-pointer"
+            wire:click="logout">
+            {{ __('messages.log_out') }}
         </flux:link>
     </div>
 </div>

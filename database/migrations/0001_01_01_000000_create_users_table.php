@@ -18,7 +18,7 @@ return new class extends Migration
                 ->default(Role::USER->value);
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('avatar')->nullable();
+            $table->string('avatar', 2048)->nullable();
             $table->string('telegram_id')->nullable();
             $table->boolean('receive_notifications')->default(true);
             $table->timestamp('email_verified_at')->nullable();

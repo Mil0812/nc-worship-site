@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @mixin IdeHelperBand
@@ -27,8 +28,9 @@ class Band extends Model
         return $this->hasMany(SetList::class);
     }
 
-    public function scopeWithLeaders($query)
+    public function getImageUrlAttribute(): string
     {
-        return $query->with(['users' => fn ($q) => $q->wherePivot('is_leader', true)]);
+        return $this->image ? Storage::url($this->image) : asset('default-images/example-band-image.png');
     }
+
 }

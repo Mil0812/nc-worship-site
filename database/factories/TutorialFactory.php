@@ -6,6 +6,7 @@ use App\Models\Instrument;
 use App\Models\Song;
 use App\Models\Tutorial;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Log;
 
 class TutorialFactory extends Factory
 {
@@ -13,16 +14,20 @@ class TutorialFactory extends Factory
 
     public function definition(): array
     {
-        $title = fake()->sentence(4);
+        $song = Song::query()->inRandomOrder()->first() ?? Song::factory()->create();
+        $instrument = Instrument::query()->inRandomOrder()->first() ?? Instrument::factory()->create();
+
+        $combinedName = "{$song->name} {$instrument->name}";
+        $slug = Tutorial::generateSlugFromRelations($song, $instrument);
+        $metaTitle = Tutorial::makeMetaTitle($combinedName);
 
         return [
-            'slug' => Tutorial::generateSlug($title),
-            'song_id' => Song::query()->inRandomOrder()->first()->id ?? Song::factory(),
-            'instrument_id' => Instrument::query()->inRandomOrder()->first()->id ?? Instrument::factory(),
+            'slug' => $slug,
+            'song_id' => $song->id,
+            'instrument_id' => $instrument->id,
             'video' => 'https://youtube.com/watch?v='.fake()->uuid,
-            'description' => fake()->paragraphs(2, true),
-            'is_public' => fake()->boolean(80), // 80% шанс бути публічним
-            'meta_title' => Tutorial::makeMetaTitle($title),
+            'is_public' => fake()->boolean(80),
+            'meta_title' => $metaTitle,
             'meta_description' => Tutorial::makeMetaDescription(fake()->paragraph),
             'meta_image' => fake()->optional()->imageUrl(1200, 630, 'tutorials'),
         ];

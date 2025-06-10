@@ -52,7 +52,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     public function favorites(): HasMany
     {
-        return $this->hasMany(Favorite::class);
+        return $this->hasMany(Favourite::class);
     }
 
     public function isAdmin(): bool
@@ -83,5 +83,13 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->isAdmin();
+    }
+
+    public function initials(): string
+    {
+        $firstInitial = $this->name ? mb_substr($this->name, 0, 1, 'UTF-8') : '';
+        $lastInitial = $this->last_name ? mb_substr($this->last_name, 0, 1, 'UTF-8') : '';
+
+        return mb_strtoupper($firstInitial . $lastInitial, 'UTF-8');
     }
 }
