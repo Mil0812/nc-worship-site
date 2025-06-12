@@ -30,7 +30,6 @@ class Index extends Component
     public function toggleSortDirection(): void
     {
         $this->sortDirection = $this->sortDirection === 'desc' ? 'asc' : 'desc';
-        Log::info('Sort direction toggled: ' . $this->sortDirection);
         $this->resetPage();
     }
 
@@ -55,15 +54,6 @@ class Index extends Component
             ->orderBy('performed_at', $this->sortDirection);
 
         $setlists = $query->paginate(12);
-
-        Log::info('Setlists query executed', [
-            'user_id' => Auth::id(),
-            'bandFilter' => $this->bandFilter,
-            'sortDirection' => $this->sortDirection,
-            'setlist_count' => $setlists->count(),
-            'total' => $setlists->total(),
-            'setlist_names' => $setlists->pluck('name')->toArray(),
-        ]);
 
         return view('livewire.setlists.index', [
             'setlists' => $setlists,
