@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class Index extends Component
 {
@@ -23,7 +24,6 @@ class Index extends Component
 
     public function updatingBandFilter(): void
     {
-        Log::info('Band filter updated: ' . $this->bandFilter);
         $this->resetPage();
     }
 
@@ -36,7 +36,6 @@ class Index extends Component
     public function render()
     {
         if (!Auth::check() || Auth::user()->bands()->count() === 0) {
-            Log::warning('No bands for user', ['user_id' => Auth::id() ?? 'guest']);
             return view('livewire.setlists.index', [
                 'setlists' => collect(),
                 'bands' => collect(),
@@ -58,6 +57,6 @@ class Index extends Component
         return view('livewire.setlists.index', [
             'setlists' => $setlists,
             'bands' => $bands,
-        ])->layout('layouts.app', ['title' => 'Setlists']);
+        ])->layout('layouts.app', ['title' => __('messages.setlists')]);
     }
 }

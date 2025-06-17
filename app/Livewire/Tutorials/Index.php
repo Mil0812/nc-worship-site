@@ -47,6 +47,6 @@ class Index extends Component
         return view('livewire.tutorials.index', [
             'songs' => $songs,
             'instruments' => Instrument::orderBy('name')->get(),
-        ])->layout('layouts.app', ['title' => 'Tutorials']);
+        ])->layout('layouts.app', ['title' => __('messages.tutorials')]);
     }
 }

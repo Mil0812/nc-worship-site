@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CommentsSection extends Component
 {
-    public $comments;
+    public Collection $comments;
     public $component;
 
     public function __construct(Collection $comments, $component)

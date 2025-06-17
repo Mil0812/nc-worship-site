@@ -161,8 +161,8 @@ button, a {
 
 .section-lists {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: var(--spacing-md);
 }
 
 .footer {
@@ -311,6 +311,8 @@ button, a {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    width: 250px;
+    margin: 0 auto;
 }
 
 .song-card:hover {
@@ -473,9 +475,29 @@ button, a {
     background-color: var(--color-primary-dark);
 }
 
+.custom-audio::-webkit-media-controls-timeline {
+    cursor: pointer;
+}
+
+.custom-audio-player progress {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: var(--color-primary-dark);
+}
+
+.custom-audio-player progress::-webkit-progress-bar {
+    background-color: var(--color-primary-light);
+}
+
+.custom-audio-player progress::-webkit-progress-value {
+    background-color: var(--color-primary);
+}
+
 
 /* BANDS PAGE */
-.band {
+.bands {
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: var(--container-padding);
@@ -695,9 +717,19 @@ button, a {
     color: var(--color-text-primary);
 }
 
+.song__comments {
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--spacing-md);
+}
+
+.song-comments,
 .song__comments .comment,
 .song__comments .reply {
     background-color: var(--color-background-alt);
+    position: relative;
+    z-index: 0;
     border-radius: var(--radius-sm);
 }
 
@@ -722,23 +754,34 @@ button, a {
 }
 
 .song__comments form {
+    max-width: 100%;
+    overflow: hidden;
     background-color: var(--color-background-alt);
     border-radius: var(--radius-sm);
     padding: var(--spacing-xs);
     margin-bottom: var(--spacing-sm);
 }
 
+/*.song__comments textarea {*/
+/*    width: 100%;*/
+/*    padding: var(--spacing-xs);*/
+/*    border: 1px solid var(--color-border);*/
+/*    border-radius: 0;*/
+/*    background-color: transparent;*/
+/*    color: #000000;*/
+/*    font-size: var(--font-size-md);*/
+/*    resize: vertical;*/
+/*    outline: none;*/
+/*    transition: border-color var(--transition-normal);*/
+/*}*/
+
 .song__comments textarea {
     width: 100%;
-    padding: var(--spacing-xs);
-    border: 1px solid var(--color-border);
-    border-radius: 0;
-    background-color: transparent;
-    color: #000000;
-    font-size: var(--font-size-md);
-    resize: vertical;
-    outline: none;
-    transition: border-color var(--transition-normal);
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    box-sizing: border-box;
 }
 
 .song__comments textarea:focus {
@@ -798,10 +841,13 @@ button, a {
         font-size: var(--font-size-2xl);
     }
 
-    .section-lists {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
+    /*.section-lists {*/
+    /*    display: grid;*/
+    /*    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); !* Фіксована мінімальна ширина 250px *!*/
+    /*    gap: var(--spacing-lg);*/
+    /*    max-width: var(--container-max-width);*/
+    /*    margin: 0 auto;*/
+    /*}*/
     .tutorial-group__song-image {
         width: 80px;
     }

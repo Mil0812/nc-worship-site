@@ -57,12 +57,12 @@ new #[Layout('components.layouts.auth')] class extends Component {
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         if ($status != Password::PASSWORD_RESET) {
-            $this->addError('email', __('messages.' . $status));
+            $this->addError('email', __($status));
 
             return;
         }
 
-        Session::flash('status', __('messages.' . $status));
+        Session::flash('status', __($status));
 
         $this->redirectRoute('login', navigate: true);
     }
@@ -76,7 +76,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     <x-auth-session-status class="text-center" :status="session('status')"/>
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
-        <!-- Email Address -->
+
         <flux:input
             wire:model="email"
             :label="__('messages.email')"
@@ -85,7 +85,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             autocomplete="email"
         />
 
-        <!-- Password -->
+
         <flux:input
             wire:model="password"
             :label="__('messages.password')"
@@ -95,7 +95,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             :placeholder="__('messages.password')"
         />
 
-        <!-- Confirm Password -->
+
         <flux:input
             wire:model="password_confirmation"
             :label="__('messages.confirm_password')"

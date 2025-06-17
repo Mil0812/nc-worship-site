@@ -2,6 +2,8 @@
 
 use App\Livewire\Dashboard\Dashboard;
 use App\Livewire\Dashboard\UserNotifications;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -51,6 +53,17 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Route::get('settings/password', App\Livewire\Dashboard\PasswordUpdate::class)->name('settings.password');
     Route::get('favourites', App\Livewire\Dashboard\Favorites::class)->name('favourites');
+});
+
+Route::post('/telegram/webhook', function (Request $request) {
+    $update = $request->all();
+    if (isset($update['message']['chat']['id'])) {
+        $user = User::where('telegram_id', '@' . $update['message']['from']['username'])->first();
+        if ($user) {
+            $user->update(['telegram_id' => $update['message']['chat']['id']]);
+        }
+    }
+    return response('OK', 200);
 });
 
 require __DIR__.'/auth.php';

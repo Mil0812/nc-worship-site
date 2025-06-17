@@ -1,4 +1,5 @@
 {{-- Close your eyes. Count to one. That is how long forever feels. --}}
+
 <section class="songs" aria-labelledby="songs-heading">
     <header class="songs__header">
         <h1 id="songs-heading" class="section-header">
@@ -6,8 +7,8 @@
         </h1>
 
         <div
-            class="section-filters ">
-            <div class="songs__search relative">
+            class="section-filters">
+            <div class="songs__search relative flex-1">
                 <label for="search" class="sr-only">{{ __('messages.search_songs') }}</label>
                 <input
                     wire:model.live.debounce.500ms="search"

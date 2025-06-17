@@ -34,6 +34,7 @@ return [
     'last_name' => 'Прізвище',
     'email' => 'Електронна пошта',
     'telegram_id' => 'Нікнейм у Telegram',
+    'receive_notifications' => 'Отримувати сповіщення',
     'save' => 'Зберегти',
     'saved' => 'Збережено.',
     'your_email_unverified' => 'Ваша адреса електронної пошти не підтверджена',
@@ -47,6 +48,7 @@ return [
     'telegram_not_set' => 'Telegram: Не встановлено',
     'your_bands' => 'Ваші групи',
     'no_bands' => 'Ви ще не є учасником жодної групи',
+
 
     // New keys for notifications pages
     'user_notifications' => 'Сповіщення користувача',
@@ -212,4 +214,11 @@ return [
     'delete_comment_confirmation' => 'Цей коментар буде видалено назавжди. Цю дію не можна скасувати',
     'yes_delete' => 'Так, видалити',
     'unauthorized_action' => 'Ви не маєте прав для виконання цієї дії',
+
+    //Notifications
+    'view-setlist' => 'Переглянути список пісень',
+    'telegram_instructions' => 'Щоб отримувати сповіщення в Telegram, ви повинні почати чат з нашим ботом:',
+    'telegram_not_started' => 'Ви ще не почали чат з нашим ботом. Будь ласка, натисніть на посилання вище, щоб почати.',
+    'open_in_browser' => 'Відкрити в браузері',
+    'show_qr_code' => 'Показати QR-код',
 ];

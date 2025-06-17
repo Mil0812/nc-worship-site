@@ -6,9 +6,9 @@
                 <p class="text-[var(--font-size-md)] mb-[var(--spacing-md)]">{{ __('messages.manage_profile') }}</p>
             </div>
             <a href="{{ url('/') }}" wire:navigate
-               class="site-header__brand text-[var(--font-size-2xl)] font-[var(--font-weight-bold)] hover:text-[var(--color-primary-dark)] transition-[var(--transition-normal)]"
-               aria-label="{{ __('messages.site_name') }} {{ __('messages.home') }}">
-                {{ __('messages.site_name') }}
+               class="site-header__brand text-[var(--font-size-2xl)] font-[var(--font-weight-bold)]"
+               aria-label="{{ __('messages.home') }} {{ __('messages.home') }}">
+                {{ __('messages.home') }}
             </a>
         </div>
         <nav class="flex gap-[var(--spacing-sm)] border-b border-[var(--color-border)]">

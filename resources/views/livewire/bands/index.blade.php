@@ -40,18 +40,17 @@
         </div>
     </header>
 
+
     <div class="section-lists">
         @forelse ($bands as $band)
             <a href="{{ route('bands.show', $band->id) }}" wire:navigate
                aria-label="{{ __('messages.view_details_for') }} {{ $band->name }}">
                 <article class="band-card">
-                    <div
-                        class="band-card aspect-[4/3] relative">
-                        <img
-                            src="{{ $band->image_url}}"
-                            alt="{{ str_replace('{name}', $band->name, __('messages.band_image_alt')) }}"
-                            class="band__image w-full h-full object-cover rounded-[var(--radius-md)]"
-                            loading="lazy">
+                    <div class="band-card aspect-[4/3] relative">
+                        <img src="{{ $band->image_url }}"
+                             alt="{{ str_replace('{name}', $band->name, __('messages.band_image_alt')) }}"
+                             class="band__image w-full h-full object-cover rounded-[var(--radius-md)]"
+                             loading="lazy">
                         <div class="band-card__content absolute inset-0 flex items-center justify-center">
                             <h2 class="band-card__name text-[var(--font-size-xl)] font-[var(--font-weight-semibold)] truncate">
                                 {{ $band->name }}

@@ -8,6 +8,7 @@
             class="mb-[var(--spacing-sm)] p-[var(--spacing-xs)] bg-[var(--color-background-alt)] rounded-[var(--radius-sm)]">
             <textarea wire:model="newComment"
                       class="w-full p-[var(--spacing-xs)] border border-[var(--color-border)] rounded-none text-[var(--font-size-md)] bg-transparent focus:outline-none focus:border-[var(--color-border)]"
+                      id="new-comment"
                       placeholder="{{ __('messages.write_comment_placeholder') }}" rows="3"></textarea>
             <button wire:click="addComment"
                     class="mt-[var(--spacing-xs)] bg-[var(--color-primary-light)] text-[var(--color-text-primary)] hover:opacity-90 rounded-[var(--radius-sm)] py-[var(--spacing-xs)] px-[var(--spacing-sm)] transition-opacity duration-200">

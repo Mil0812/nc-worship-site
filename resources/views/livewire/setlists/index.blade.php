@@ -46,7 +46,7 @@
                                 {{ $setlist->name }}
                             </h2>
                             <p class="setlist-card__date text-[var(--font-size-md)]">
-                                {{ $setlist->performed_at?->format('M d, Y') ?? __('messages.no_date') }}
+                                {{ $setlist->performed_at?->locale('uk')->format('d M Y') ?? __('messages.no_date') }}
                                 ({{ $setlist->performed_at?->diffForHumans() ?? '' }})
                             </p>
                             <p class="setlist-card__band text-[var(--font-size-sm)]">

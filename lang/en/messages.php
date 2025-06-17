@@ -37,6 +37,7 @@ return [
     'last_name' => 'Last Name',
     'email' => 'Email',
     'telegram_id' => 'Telegram ID',
+    'receive_notifications' => 'Receive notifications',
     'save' => 'Save',
     'saved' => 'Saved.',
     'your_email_unverified' => 'Your email address is unverified.',
@@ -50,6 +51,7 @@ return [
     'telegram_not_set' => 'Telegram: Not set',
     'your_bands' => 'Your Bands',
     'no_bands' => 'You are not a member of any bands yet.',
+
 
     // New keys for notifications pages
     'user_notifications' => 'User Notifications',
@@ -215,4 +217,13 @@ return [
     'cancel' => 'Cancel',
     'js_success_title' => 'Success',
     'js_error_title' => 'Error',
+
+    //Notifications
+    'view-setlist' => 'View Setlist',
+    'telegram_instructions' => 'To receive notifications on Telegram, you must start a chat with our bot:',
+    'telegram_not_started' => 'You have not started a chat with our bot yet. Please click the link above to start.',
+    'open_in_browser' => 'Open in browser',
+    'show_qr_code' => 'Show QR code',
+
+
 ];

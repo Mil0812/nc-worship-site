@@ -85,7 +85,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <x-auth-header :title="__('messages.login_title')"
                        :description="__('messages.login_description')" class="text-center"/>
 
-        <!-- Session Status -->
+
         <x-auth-session-status class="text-center text-[var(--color-text-secondary)]" :status="session('status')"/>
 
         <form wire:submit="login" class="flex flex-col gap-[var(--spacing-md)]">
@@ -101,7 +101,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 class="w-full"
             />
 
-            <!-- Password -->
+
             <div class="relative">
                 <flux:input
                     wire:model="password"
@@ -122,7 +122,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 @endif
             </div>
 
-            <!-- Remember Me -->
+
             <flux:checkbox wire:model="remember" :label="__('messages.remember_me')"
                            class="text-[var(--color-text-secondary)]"/>
 

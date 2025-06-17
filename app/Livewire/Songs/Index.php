@@ -66,6 +66,6 @@ class Index extends Component
         return view('livewire.songs.index', [
             'songs' => $songs,
             'songTypes' => SongType::cases(),
-        ])->layout('layouts.app', ['title' => 'Songs']);
+        ])->layout('layouts.app', ['title' => __('messages.songs')]);
     }
 }

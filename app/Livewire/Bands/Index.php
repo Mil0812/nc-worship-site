@@ -41,6 +41,6 @@ class Index extends Component
 
         return view('livewire.bands.index', [
             'bands' => $bands,
-        ])->layout('layouts.app', ['title' => 'Bands']);
+        ])->layout('layouts.app', ['title' => __('messages.bands')]);
     }
 }
