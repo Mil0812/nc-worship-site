@@ -9,6 +9,7 @@ use Filament\Support\Contracts\HasLabel;
 
 enum SongSectionType: string implements HasLabel
 {
+    case VERSE = 'verse';
     case VERSE_1 = 'verse1';
     case VERSE_2 = 'verse2';
     case VERSE_3 = 'verse3';

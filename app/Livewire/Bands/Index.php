@@ -37,7 +37,7 @@ class Index extends Component
             ->when($this->search, fn($query) => $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($this->search) . '%']))
             ->orderBy('name', $this->sortDirection);
 
-        $bands = $query->paginate(12);
+        $bands = $query->paginate(6);
 
         return view('livewire.bands.index', [
             'bands' => $bands,

@@ -52,7 +52,7 @@ class Index extends Component
             ->withCount('songs')
             ->orderBy('performed_at', $this->sortDirection);
 
-        $setlists = $query->paginate(12);
+        $setlists = $query->paginate(6);
 
         return view('livewire.setlists.index', [
             'setlists' => $setlists,

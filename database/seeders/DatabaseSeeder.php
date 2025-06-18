@@ -14,6 +14,7 @@ use App\Models\SongSection;
 use App\Models\Tutorial;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,9 @@ class DatabaseSeeder extends Seeder
                 ['password' => Hash::make('Agent007$')]
             )
         );
+//
+//        $sql = file_get_contents(database_path('insert_data.sql'));
+//        DB::unprepared($sql);
 
 //        $users = User::factory()->count(10)->create();
 //

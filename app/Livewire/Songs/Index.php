@@ -60,7 +60,7 @@ class Index extends Component
             ->when($this->typeFilter, fn($query) => $query->where('type', $this->typeFilter))
             ->orderBy($this->sortBy === 'popularity' ? 'name' : $this->sortBy, $this->sortDirection);
 
-        $songs = $query->paginate(12);
+        $songs = $query->paginate(6);
 
 
         return view('livewire.songs.index', [

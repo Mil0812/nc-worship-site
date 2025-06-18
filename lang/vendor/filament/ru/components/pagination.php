@@ -2,15 +2,15 @@
 
 return [
 
-    'label' => 'Пагинация',
+    'label' => 'Пагінація',
 
-    'overview' => 'Показано с :first по :last из :total',
+    'overview' => 'Показано з :first по :last з :total',
 
     'fields' => [
 
         'records_per_page' => [
 
-            'label' => 'на страницу',
+            'label' => 'на сторінку',
 
             'options' => [
                 'all' => 'Все',
@@ -23,23 +23,23 @@ return [
     'actions' => [
 
         'first' => [
-            'label' => 'Первая',
+            'label' => 'Перша',
         ],
 
         'go_to_page' => [
-            'label' => 'Перейти к странице :page',
+            'label' => 'Перейти на сторінку :page',
         ],
 
         'last' => [
-            'label' => 'Последняя',
+            'label' => 'Остання',
         ],
 
         'next' => [
-            'label' => 'Следующая',
+            'label' => 'Наступна',
         ],
 
         'previous' => [
-            'label' => 'Предыдущая',
+            'label' => 'Попередня',
         ],
 
     ],
